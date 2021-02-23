@@ -31,6 +31,8 @@ Make sure the scale/rotation of this GameObject never changes! It'll be automati
 
 Go ahead and put your hat model in this gameobject. Anything besides MonoBehaviours works, so feel free to use animations, fancy shaders, particles, etc. Make sure to position it so that it's right above the Hat Template cube, just sitting on top of it. 
 
+NOTE: Make sure to remove all colliders! These can make the game behave weirdly!
+
 Once your model is done, add a `Hat Descriptor` component. This component is very similar to the material descriptor, and most fields are self-explanatory.
 
 * `Hat Name` is what you want the hat to be called in-game
