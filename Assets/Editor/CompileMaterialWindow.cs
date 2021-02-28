@@ -64,34 +64,13 @@ public class CompileNoteWindow : EditorWindow
 
                         if (path != "")
                         {
-                            string fileName = Path.GetFileName(path);
-                            string folderPath = Path.GetDirectoryName(path);
-
-                            Selection.activeObject = noteObject;
                             EditorUtility.SetDirty(note);
-                            EditorSceneManager.MarkSceneDirty(noteObject.scene);
-                            EditorSceneManager.SaveScene(noteObject.scene);
-                            PrefabUtility.CreatePrefab("Assets/_Material.prefab", Selection.activeObject as GameObject);
-                            AssetBundleBuild assetBundleBuild = default(AssetBundleBuild);
-                            assetBundleBuild.assetNames = new string[] {
-                            "Assets/_Material.prefab"
-                        };
 
-                            assetBundleBuild.assetBundleName = fileName;
+                            GameObject tempMaterialObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                            tempMaterialObject.GetComponent<MeshRenderer>().sharedMaterial = noteObject.GetComponent<MeshRenderer>().sharedMaterial;
 
-                            BuildTargetGroup selectedBuildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-                            BuildTarget activeBuildTarget = EditorUserBuildSettings.activeBuildTarget;
-
-                            BuildPipeline.BuildAssetBundles(Application.temporaryCachePath, new AssetBundleBuild[] { assetBundleBuild }, 0, EditorUserBuildSettings.activeBuildTarget);
-                            EditorPrefs.SetString("currentBuildingAssetBundlePath", folderPath);
-                            EditorUserBuildSettings.SwitchActiveBuildTarget(selectedBuildTargetGroup, activeBuildTarget);
-                            AssetDatabase.DeleteAsset("Assets/_Material.prefab");
-                            if (File.Exists(path))
-                            {
-                                File.Delete(path);
-                            }
-                            File.Move(Application.temporaryCachePath + "/" + fileName, path);
-                            AssetDatabase.Refresh();
+                            // do stuff 
+                            ExporterUtils.ExportPackage(tempMaterialObject, path, "Material", ExporterUtils.MaterialDescriptorToJSON(note));
                             EditorUtility.DisplayDialog("Exportation Successful!", "Exportation Successful!", "OK");
                         }
                         else

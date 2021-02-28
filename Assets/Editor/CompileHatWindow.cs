@@ -64,34 +64,17 @@ public class CompileHatWindow : EditorWindow
 
                         if (path != "")
                         {
-                            string fileName = Path.GetFileName(path);
-                            string folderPath = Path.GetDirectoryName(path);
-
-                            Selection.activeObject = noteObject;
                             EditorUtility.SetDirty(note);
-                            EditorSceneManager.MarkSceneDirty(noteObject.scene);
-                            EditorSceneManager.SaveScene(noteObject.scene);
-                            PrefabUtility.CreatePrefab("Assets/_Hat.prefab", Selection.activeObject as GameObject);
-                            AssetBundleBuild assetBundleBuild = default(AssetBundleBuild);
-                            assetBundleBuild.assetNames = new string[] {
-                            "Assets/_Hat.prefab"
-                        };
 
-                            assetBundleBuild.assetBundleName = fileName;
-
-                            BuildTargetGroup selectedBuildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-                            BuildTarget activeBuildTarget = EditorUserBuildSettings.activeBuildTarget;
-
-                            BuildPipeline.BuildAssetBundles(Application.temporaryCachePath, new AssetBundleBuild[] { assetBundleBuild }, 0, EditorUserBuildSettings.activeBuildTarget);
-                            EditorPrefs.SetString("currentBuildingAssetBundlePath", folderPath);
-                            EditorUserBuildSettings.SwitchActiveBuildTarget(selectedBuildTargetGroup, activeBuildTarget);
-                            AssetDatabase.DeleteAsset("Assets/_Hat.prefab");
-                            if (File.Exists(path))
+                            noteObject = Instantiate(noteObject);
+                            foreach(Collider collider in noteObject.GetComponentsInChildren<Collider>())
                             {
-                                File.Delete(path);
+                                DestroyImmediate(collider);
                             }
-                            File.Move(Application.temporaryCachePath + "/" + fileName, path);
-                            AssetDatabase.Refresh();
+                            noteObject.GetComponent<GorillaCosmetics.Data.Descriptors.HatDescriptor>().enabled = false;
+                            DestroyImmediate(noteObject.GetComponent<GorillaCosmetics.Data.Descriptors.HatDescriptor>());
+                            // do stuff 
+                            ExporterUtils.ExportPackage(noteObject, path, "Hat", ExporterUtils.HatDescriptorToJSON(note));
                             EditorUtility.DisplayDialog("Exportation Successful!", "Exportation Successful!", "OK");
                         }
                         else
