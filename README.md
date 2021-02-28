@@ -3,7 +3,9 @@
 A unity project to create your own cosmetics for the [Gorilla Cosmetics](https://github.com/legoandmars/GorillaCosmetics) mod for Gorilla Tag.
 
 ## Usage
-This project is made with Unity version 2019.3.15f. Higher or lower Unity versions may not work properly, so make sure to download it from the [Unity Archive](https://unity3d.com/get-unity/download/archive) if you don't have it already.
+This project is made with Unity version 2019.3.15f. Higher or lower Unity versions may not work properly, so make sure to download it from the [Unity Archive](https://unity3d.com/get-unity/download/archive) if you don't have it already. It's recommended to use Unity Hub to make managing versions easier.
+
+**Make sure to add android build support to your Unity 2019.3.15f!** This is needed to make sure your bundles properly support quest. Instructions can be found here: https://docs.unity3d.com/Manual/android-sdksetup.html
 
 Once you've opened the unity project, open the sample scene located at `Scenes/SampleScene`
 
