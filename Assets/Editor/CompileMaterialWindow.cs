@@ -72,6 +72,7 @@ public class CompileNoteWindow : EditorWindow
                             // do stuff 
                             ExporterUtils.ExportPackage(tempMaterialObject, path, "Material", ExporterUtils.MaterialDescriptorToJSON(note));
                             EditorUtility.DisplayDialog("Exportation Successful!", "Exportation Successful!", "OK");
+                            EditorUtility.RevealInFinder(path);
                         }
                         else
                         {

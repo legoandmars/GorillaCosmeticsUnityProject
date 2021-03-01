@@ -76,6 +76,7 @@ public class CompileHatWindow : EditorWindow
                             // do stuff 
                             ExporterUtils.ExportPackage(noteObject, path, "Hat", ExporterUtils.HatDescriptorToJSON(note));
                             EditorUtility.DisplayDialog("Exportation Successful!", "Exportation Successful!", "OK");
+                            EditorUtility.RevealInFinder(path);
                         }
                         else
                         {
