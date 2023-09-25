@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class CompileHatWindow : EditorWindow
 {
 
@@ -75,6 +77,7 @@ public class CompileHatWindow : EditorWindow
                             DestroyImmediate(noteObject.GetComponent<GorillaCosmetics.Data.Descriptors.HatDescriptor>());
                             // do stuff 
                             ExporterUtils.ExportPackage(noteObject, path, "Hat", ExporterUtils.HatDescriptorToJSON(note));
+                            EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
                             EditorUtility.DisplayDialog("Exportation Successful!", "Exportation Successful!", "OK");
                         }
                         else

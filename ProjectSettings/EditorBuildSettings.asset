@@ -8,5 +8,7 @@ EditorBuildSettings:
   m_configObjects:
     com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: e5eab35700274bb4cbe290f54e78bd74,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 74e95eef87e46fd42bdc00286242d11f,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bf5a8029905e1134abf343976daa154a,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: a4d6f0f407b7234418e19b2733cebe99,
       type: 2}

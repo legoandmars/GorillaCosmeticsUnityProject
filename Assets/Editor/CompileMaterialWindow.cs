@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class CompileNoteWindow : EditorWindow
 {
 
@@ -71,6 +73,7 @@ public class CompileNoteWindow : EditorWindow
 
                             // do stuff 
                             ExporterUtils.ExportPackage(tempMaterialObject, path, "Material", ExporterUtils.MaterialDescriptorToJSON(note));
+                            EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
                             EditorUtility.DisplayDialog("Exportation Successful!", "Exportation Successful!", "OK");
                         }
                         else
